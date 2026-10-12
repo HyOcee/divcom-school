@@ -1,26 +1,276 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-heading), "Arial Narrow", Arial, sans-serif;
+  --font-condensed: var(--font-heading), "Arial Narrow", Arial, sans-serif;
+
+  /* Divcom blue */
+  --color-navy-950: #0a1433;
+  --color-navy-900: #0f1d4a;
+  --color-navy-800: #16296b;
+  --color-navy-700: #1d3a8f;
+  --color-blue-600: #2453c7;
+  --color-blue-500: #3b6fe0;
+  --color-blue-200: #c9d8fb;
+  --color-blue-100: #e3ebfd;
+  --color-blue-50: #f2f6fe;
+
+  /* Divcom pink */
+  --color-pink-700: #b8235d;
+  --color-pink-600: #d63674;
+  --color-pink-500: #e8508a;
+  --color-pink-400: #ef7aa6;
+  --color-pink-300: #f5a6c4;
+  --color-pink-200: #f9cddd;
+  --color-pink-100: #fde6ef;
+  --color-pink-50: #fff4f8;
+
+  --color-cream: #fffaf5;
+  --color-ink: #15183a;
+  --color-muted: #5b6080;
+
+  /* Type scale, one step larger than Tailwind's default throughout. */
+  --text-xs: 0.9375rem;
+  --text-sm: 1.0625rem;
+  --text-base: 1.1875rem;
+  --text-lg: 1.3125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 2.75rem;
+  --text-5xl: 3.5rem;
+  --text-6xl: 4.25rem;
+  --text-7xl: 5.25rem;
+  --text-8xl: 6.75rem;
+
+  --animate-marquee: marquee 45s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  font-size: var(--text-base);
+  line-height: 1.65;
+  overflow-x: clip;
+  /* Bebas Neue has a single weight and no italic: never fake bold or slanted versions of it. */
+  font-synthesis: none;
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-pink-200);
+  color: var(--color-navy-900);
+}
+
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  /* No max width: content uses the full screen, with side padding that grows on wider screens. */
+  padding-inline: 1rem;
+  @variant sm { padding-inline: 1.5rem; }
+  @variant lg { padding-inline: clamp(2rem, 5vw, 7rem); }
+}
+
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-pink-600);
+  /* GSSM-style pointer marker */
+  &::before {
+    content: "";
+    border-left: 0.55rem solid currentColor;
+    border-block: 0.36rem solid transparent;
+  }
+}
+
+@utility h-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--color-navy-900);
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.95rem 1.8rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  transition: all 200ms ease;
+  &:hover { transform: translateY(-2px); }
+  &:active { transform: translateY(0) scale(0.97); }
+  &:focus-visible {
+    outline: 2px solid var(--color-pink-500);
+    outline-offset: 2px;
+  }
+}
+
+@utility btn-pink {
+  background: var(--color-pink-600);
+  color: white;
+  box-shadow: 0 10px 24px -8px rgb(214 54 116 / 0.55);
+  &:hover { background: var(--color-pink-700); }
+}
+
+@utility btn-navy {
+  background: var(--color-navy-900);
+  color: white;
+  &:hover { background: var(--color-navy-800); }
+}
+
+@utility btn-outline {
+  border: 2px solid rgb(15 29 74 / 0.15);
+  color: var(--color-navy-900);
+  &:hover { border-color: var(--color-navy-900); }
+}
+
+@utility btn-ghost-light {
+  border: 2px solid rgb(255 255 255 / 0.4);
+  color: white;
+  &:hover { background: white; color: var(--color-navy-900); }
+}
+
+@utility link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: var(--color-navy-800);
+  padding-bottom: 4px;
+  background: linear-gradient(var(--color-pink-400), var(--color-pink-400)) left bottom / 100% 2px no-repeat;
+  transition: color 200ms ease, background-size 400ms var(--ease-out);
+  &:hover {
+    color: var(--color-pink-600);
+    background-size: 0% 2px;
+    animation: underline-in 0.5s var(--ease-out) 0.15s forwards;
+  }
+}
+
+@utility field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(15 29 74 / 0.15);
+  background: white;
+  padding: 0.85rem 1rem;
+  font-size: 1.125rem;
+  color: var(--color-ink);
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  &::placeholder { color: rgb(91 96 128 / 0.7); }
+  &:focus {
+    border-color: var(--color-blue-500);
+    box-shadow: 0 0 0 4px var(--color-blue-100);
+  }
+}
+
+@utility dots {
+  background-image: radial-gradient(currentColor 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+}
+
+/* ---------- Motion ----------
+   One easing curve and a small set of movements, used consistently:
+   - .reveal (+ data-reveal) — fades content in as it scrolls into view (components/Reveal.tsx)
+   - .anim-* — entrance animations that play once on page load; stagger with `[--d:300ms]`
+   Everything is switched off for visitors who prefer reduced motion. */
+:root {
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* Height of the preview strip; layout.tsx sets it while PREVIEW_MODE is on. */
+  --preview-h: 0px;
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+}
+.js .reveal[data-reveal="left"] { transform: translateX(-40px); }
+.js .reveal[data-reveal="right"] { transform: translateX(40px); }
+.js .reveal[data-reveal="zoom"] { transform: scale(0.94); }
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } }
+@keyframes from-left { from { opacity: 0; transform: translateX(-56px); } }
+@keyframes from-right { from { opacity: 0; transform: translateX(56px); } }
+@keyframes drop { from { opacity: 0; transform: translateY(-48px); } }
+@keyframes line-up { from { transform: translateY(110%); } }
+/* Ends slightly outside the box so shadows are not clipped. */
+@keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(-4rem); } }
+@keyframes ken-burns { from { transform: scale(1.12); } }
+@keyframes float { 50% { transform: translateY(-10px); } }
+@keyframes drift { from { transform: translateY(48px); } to { transform: translateY(-48px); } }
+@keyframes grow-x { from { transform: scaleX(0); } }
+@keyframes underline-in { from { background-size: 0% 2px; } to { background-size: 100% 2px; } }
+
+.anim-rise,
+.anim-left,
+.anim-right,
+.anim-drop,
+.anim-line,
+.anim-wipe {
+  animation: rise 0.9s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+.anim-left { animation-name: from-left; }
+.anim-right { animation-name: from-right; }
+.anim-drop { animation-name: drop; }
+.anim-wipe { animation-name: wipe; animation-duration: 1.2s; }
+/* Headline lines slide up from behind an invisible edge. */
+.line-mask { display: block; overflow: hidden; padding-bottom: 0.06em; }
+.anim-line { display: block; animation-name: line-up; animation-duration: 1s; }
+.anim-kenburns { animation: ken-burns 14s var(--ease-out) both; }
+.anim-float { animation: float 7s ease-in-out infinite; animation-delay: var(--d, 0ms); }
+
+/* Thin progress bar showing how far down the page you are (browsers with scroll-driven animations). */
+.scroll-progress { display: none; }
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block;
+    transform-origin: left;
+    animation: grow-x linear both;
+    animation-timeline: scroll(root);
+  }
+  /* Pencil sketches drift gently as the section passes. */
+  .sketch-drift {
+    animation: drift linear both;
+    animation-timeline: view();
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-marquee,
+  [class*="anim-"],
+  .sketch-drift { animation: none !important; }
+  .scroll-progress { display: none; }
 }

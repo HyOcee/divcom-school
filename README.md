@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Divcom Nursery & Primary School — Website
 
-## Getting Started
+Built with Next.js 16, React 19 and Tailwind CSS 4.
 
-First, run the development server:
+## Run it locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install      # first time only
+npm run dev      # then open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production build: `npm run build && npm start`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Editing content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All text lives in **`lib/content.ts`**: contact details, class levels, subjects,
+staff, testimonials, news, term dates, FAQs and more. Anything marked
+`PLACEHOLDER` is sample text to replace with real information.
 
-## Learn More
+- **Email:** set `school.email` once the official address is ready. It then appears in the footer and on the Contact page.
+- **Social media:** replace the `"#"` links in `school.social`.
+- **Motto / mission / vision:** `school.motto`, `mission`, `vision`.
+- **About page timeline and history:** `app/about/page.tsx`.
 
-To learn more about Next.js, take a look at the following resources:
+## Adding photos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Put image files in `public/images/` (for example `public/images/hero.jpg`).
+2. In `lib/content.ts`, add `src` to the matching photo, e.g.
+   `hero: { src: "/images/hero.jpg", alt: "Smiling Divcom pupils" }`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Any photo without a `src` shows a branded pink/blue placeholder labelled with
+what belongs there. Gallery photos are added to the `gallery` list.
 
-## Deploy on Vercel
+## Logo
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The crest in `components/Logo.tsx` and `app/icon.svg` is a placeholder. Swap it
+for the official logo when available.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Enquiry forms
+
+There's no school email or server yet, so the admission and contact forms open
+WhatsApp with the parent's details pre-filled, addressed to +234 708 668 7105.
+They can later be connected to an email service instead.
