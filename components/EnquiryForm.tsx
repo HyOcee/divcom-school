@@ -118,7 +118,7 @@ export function EnquiryForm({ variant = "admission" }: { variant?: Variant }) {
               <option>Admissions enquiry</option>
               <option>Book a school visit</option>
               <option>Fees enquiry</option>
-              <option>School bus / after-school care</option>
+              <option>After-school care</option>
               <option>General enquiry</option>
             </select>
           </label>

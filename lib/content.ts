@@ -62,7 +62,7 @@ export const nav: NavItem[] = [
       { label: "Head Teacher's Welcome", href: "/about#welcome" },
       { label: "Our Staff", href: "/about#staff" },
       { label: "Facilities", href: "/about#facilities" },
-      { label: "Achievements", href: "/about#achievements" },
+      // TODO: restore with SHOW_ACHIEVEMENTS — { label: "Achievements", href: "/about#achievements" },
     ],
   },
   {
@@ -91,8 +91,8 @@ export const navSections = (href: string) => nav.find((item) => item.href === hr
 
 export const photos = {
   hero: { src: "/images/photos/school-front.jpg", alt: "The front of DIVCOM Nursery & Primary School" } as PhotoSlot,
-  welcome: { alt: "Pupils reading together in the library" } as PhotoSlot,
-  headTeacher: { alt: "Portrait of the Head Teacher" } as PhotoSlot,
+  welcome: { alt: "Pupils reading together" } as PhotoSlot,
+  headTeacher: { alt: "Portrait of Mrs. Comfort Emuemhonjie, Head Teacher" } as PhotoSlot,
   aboutHero: { src: "/images/photos/school-compound.jpg", alt: "The DIVCOM school compound" } as PhotoSlot,
   academicsHero: { alt: "A teacher helping pupils in class" } as PhotoSlot,
   admissionsHero: { src: "/images/photos/graduation.jpg", alt: "A DIVCOM graduand receiving her certificate", focus: "50% 22%" } as PhotoSlot,
@@ -139,8 +139,7 @@ export const stats = [
 ];
 
 export const headTeacher = {
-  // PLACEHOLDER
-  name: "Mrs. Adebola Okonkwo",
+  name: "Mrs. Comfort Emuemhonjie",
   role: "Head Teacher",
   shortQuote:
     "Every child who walks through our gates is a gift. Our promise is to know them, love them and help them discover just how much they can achieve.",
@@ -153,13 +152,10 @@ export const headTeacher = {
 };
 
 export const staff = [
-  // PLACEHOLDER — replace with real staff names, roles and photos
-  { name: "Mrs. Adebola Okonkwo", role: "Head Teacher", photo: { alt: "Head Teacher" } as PhotoSlot },
-  { name: "Mr. Chinedu Eze", role: "Deputy Head (Academics)", photo: { alt: "Deputy Head" } as PhotoSlot },
-  { name: "Mrs. Funmilayo Adeyemi", role: "Head of Early Years", photo: { alt: "Head of Early Years" } as PhotoSlot },
-  { name: "Mlle. Grace Amadi", role: "French Teacher", photo: { alt: "French Teacher" } as PhotoSlot },
-  { name: "Mr. Tunde Bakare", role: "Music Director", photo: { alt: "Music Director" } as PhotoSlot },
-  { name: "Mrs. Ngozi Okafor", role: "Pastoral Care Lead", photo: { alt: "Pastoral Care Lead" } as PhotoSlot },
+  { name: "Mrs. Comfort Emuemhonjie", role: "Head Teacher", photo: { alt: "Mrs. Comfort Emuemhonjie, Head Teacher" } as PhotoSlot },
+  // PLACEHOLDER — replace with real teacher names, roles and photos
+  { name: "Teacher 1", role: "Teacher", photo: { alt: "Teacher 1" } as PhotoSlot },
+  { name: "Teacher 2", role: "Teacher", photo: { alt: "Teacher 2" } as PhotoSlot },
 ];
 
 export const classLevels = [
@@ -211,13 +207,8 @@ export const subjects = [
 
 export const facilities = [
   { title: "Bright, Airy Classrooms", text: "Spacious, well-ventilated classrooms with child-friendly furniture and learning displays.", icon: "School", src: undefined },
-  { title: "Library & Reading Corner", text: "A growing collection of storybooks and reference books to build a lifelong love of reading.", icon: "Library", src: undefined },
-  { title: "ICT Lab", text: "Computers for hands-on digital literacy, typing and introductory coding lessons.", icon: "Laptop", src: undefined },
   { title: "Safe Playground", text: "Secure outdoor play equipment for healthy, active and happy break times.", icon: "TreePalm", src: "/images/photos/playground.jpg" },
-  { title: "Music Room", text: "Instruments and space for singing, rhythm and performance practice.", icon: "Piano", src: undefined },
-  { title: "School Bus Service", text: "Reliable pick-up and drop-off routes around Ikorodu with trained attendants.", icon: "Bus", src: undefined },
-  { title: "Sick Bay", text: "A dedicated sick bay with first-aid trained staff for pupils' health and comfort.", icon: "Stethoscope", src: undefined },
-  { title: "CCTV & Secure Gate", text: "CCTV monitoring and controlled access so parents have total peace of mind.", icon: "Cctv", src: undefined },
+  { title: "Music", text: "Keyboard, recorder and singing lessons that build rhythm, confidence and a love of performing.", icon: "Piano", src: undefined },
 ] as const;
 
 export const testimonials = [
@@ -248,14 +239,13 @@ export const testimonials = [
   },
 ];
 
+// TODO: achievements are hidden until the school supplies real ones. Replace the dummy items below,
+// then set SHOW_ACHIEVEMENTS to true to show them on the homepage and About page again.
+export const SHOW_ACHIEVEMENTS = false;
+
 export const achievements = [
-  // PLACEHOLDER
-  { year: "2025", title: "100% Common Entrance Pass", text: "Every Basic 5 pupil gained admission into their chosen secondary schools." },
-  { year: "2025", title: "Ikorodu Inter-School Spelling Bee", text: "First place in the Lower Primary category." },
-  { year: "2024", title: "Lagos State Mathematics Olympiad", text: "Two pupils reached the state final round." },
-  { year: "2024", title: "Best Cultural Day Presentation", text: "Recognised at the zonal schools' cultural festival." },
-  { year: "2023", title: "Inter-School Sports Festival", text: "Gold medals in the 4×100m relay and sack race." },
-  { year: "2022", title: "Young Readers' Award", text: "Pupils completed over 2,000 books in the reading challenge." },
+  { year: "Year", title: "Achievement 1", text: "Short description of the achievement." },
+  { year: "Year", title: "Achievement 2", text: "Short description of the achievement." },
 ];
 
 export const admissionSteps = [
@@ -299,10 +289,6 @@ export const faqs = [
   {
     q: "Do you offer after-school care?",
     a: "Yes. Our supervised after-school care gives working parents flexibility, with homework support, reading and fun activities.",
-  },
-  {
-    q: "Is there a school bus?",
-    a: "Yes, we run a school bus service on routes around Ikorodu. Contact us to check whether your area is covered.",
   },
   {
     q: "Which curriculum do you follow?",
@@ -448,11 +434,9 @@ export const gallery: { category: Exclude<(typeof galleryCategories)[number], "A
   { category: "Arts & Music", photo: { alt: "Pupils playing keyboard" } },
   { category: "Facilities", photo: { src: "/images/photos/school-compound.jpg", alt: "The school compound" } },
   { category: "Facilities", photo: { src: "/images/photos/school-front.jpg", alt: "The front of the school" } },
-  { category: "Facilities", photo: { alt: "The school library" } },
   { category: "Classroom", photo: { alt: "Basic 3 science experiment" } },
   { category: "Events", photo: { alt: "Cultural Day parade" } },
   { category: "Arts & Music", photo: { alt: "School choir" } },
-  { category: "Facilities", photo: { alt: "ICT lab" } },
   { category: "Sports", photo: { alt: "March past by Pink House" } },
   { category: "Classroom", photo: { alt: "French lesson" } },
   { category: "Events", photo: { alt: "Christmas carol concert" } },
