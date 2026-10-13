@@ -25,6 +25,8 @@ const description =
   "DIVCOM Nursery & Primary School, Ori-Okuta, Ikorodu, Lagos. A caring, high-achieving school for Nursery, Kindergarten and Basic 1 – 5, with French, Music, ICT and after-school care. Established 2011.";
 
 export const metadata: Metadata = {
+  // Lets shared links (WhatsApp, Facebook, etc.) resolve page images and URLs against the real domain.
+  metadataBase: new URL(school.url),
   title: {
     default: `${school.name} | Ikorodu, Lagos`,
     template: `%s | ${school.name}`,

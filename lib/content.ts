@@ -12,6 +12,8 @@
 export type PhotoSlot = {
   src?: string;
   alt: string;
+  /** Which part of the photo to keep in view when it's cropped (CSS object-position), e.g. "50% 20%". */
+  focus?: string;
 };
 
 /**
@@ -23,6 +25,8 @@ export const PREVIEW_MODE = true;
 export const school = {
   name: "DIVCOM Nursery & Primary School",
   shortName: "DIVCOM",
+  // The site's main address (divcomschool.com redirects here).
+  url: "https://www.divcomschool.com",
   founded: 2011,
   motto: "Moral Empowerment & Sustainability",
   address: {
@@ -86,16 +90,16 @@ export const nav: NavItem[] = [
 export const navSections = (href: string) => nav.find((item) => item.href === href)?.children ?? [];
 
 export const photos = {
-  hero: { alt: "Smiling DIVCOM pupils in the school compound" } as PhotoSlot,
+  hero: { src: "/images/photos/school-front.jpg", alt: "The front of DIVCOM Nursery & Primary School" } as PhotoSlot,
   welcome: { alt: "Pupils reading together in the library" } as PhotoSlot,
   headTeacher: { alt: "Portrait of the Head Teacher" } as PhotoSlot,
-  aboutHero: { alt: "The DIVCOM school building" } as PhotoSlot,
+  aboutHero: { src: "/images/photos/school-compound.jpg", alt: "The DIVCOM school compound" } as PhotoSlot,
   academicsHero: { alt: "A teacher helping pupils in class" } as PhotoSlot,
-  admissionsHero: { alt: "Parents and pupils on a school tour" } as PhotoSlot,
+  admissionsHero: { src: "/images/photos/graduation.jpg", alt: "A DIVCOM graduand receiving her certificate", focus: "50% 22%" } as PhotoSlot,
   french: { alt: "Pupils during a French lesson" } as PhotoSlot,
   music: { alt: "Pupils playing musical instruments" } as PhotoSlot,
   afterSchool: { alt: "Pupils doing activities during after-school care" } as PhotoSlot,
-  visit: { alt: "The school entrance" } as PhotoSlot,
+  visit: { src: "/images/photos/school-front.jpg", alt: "The DIVCOM school entrance" } as PhotoSlot,
 };
 
 // PLACEHOLDER — replace with the official mission and vision when ready
@@ -206,14 +210,14 @@ export const subjects = [
 ] as const;
 
 export const facilities = [
-  { title: "Bright, Airy Classrooms", text: "Spacious, well-ventilated classrooms with child-friendly furniture and learning displays.", icon: "School" },
-  { title: "Library & Reading Corner", text: "A growing collection of storybooks and reference books to build a lifelong love of reading.", icon: "Library" },
-  { title: "ICT Lab", text: "Computers for hands-on digital literacy, typing and introductory coding lessons.", icon: "Laptop" },
-  { title: "Safe Playground", text: "Secure outdoor play equipment for healthy, active and happy break times.", icon: "TreePalm" },
-  { title: "Music Room", text: "Instruments and space for singing, rhythm and performance practice.", icon: "Piano" },
-  { title: "School Bus Service", text: "Reliable pick-up and drop-off routes around Ikorodu with trained attendants.", icon: "Bus" },
-  { title: "Sick Bay", text: "A dedicated sick bay with first-aid trained staff for pupils' health and comfort.", icon: "Stethoscope" },
-  { title: "CCTV & Secure Gate", text: "CCTV monitoring and controlled access so parents have total peace of mind.", icon: "Cctv" },
+  { title: "Bright, Airy Classrooms", text: "Spacious, well-ventilated classrooms with child-friendly furniture and learning displays.", icon: "School", src: undefined },
+  { title: "Library & Reading Corner", text: "A growing collection of storybooks and reference books to build a lifelong love of reading.", icon: "Library", src: undefined },
+  { title: "ICT Lab", text: "Computers for hands-on digital literacy, typing and introductory coding lessons.", icon: "Laptop", src: undefined },
+  { title: "Safe Playground", text: "Secure outdoor play equipment for healthy, active and happy break times.", icon: "TreePalm", src: "/images/photos/playground.jpg" },
+  { title: "Music Room", text: "Instruments and space for singing, rhythm and performance practice.", icon: "Piano", src: undefined },
+  { title: "School Bus Service", text: "Reliable pick-up and drop-off routes around Ikorodu with trained attendants.", icon: "Bus", src: undefined },
+  { title: "Sick Bay", text: "A dedicated sick bay with first-aid trained staff for pupils' health and comfort.", icon: "Stethoscope", src: undefined },
+  { title: "CCTV & Secure Gate", text: "CCTV monitoring and controlled access so parents have total peace of mind.", icon: "Cctv", src: undefined },
 ] as const;
 
 export const testimonials = [
@@ -346,7 +350,7 @@ export const news: NewsItem[] = [
       "The programme featured songs, a French recitation, a drama presentation and the presentation of awards for academic excellence, good conduct and leadership.",
       "We are so proud of each graduand and wish them every success in the next stage of their journey.",
     ],
-    photo: { alt: "Graduands in caps and gowns" },
+    photo: { src: "/images/photos/graduation.jpg", alt: "A DIVCOM graduand receiving her certificate", focus: "50% 22%" },
   },
   {
     slug: "common-entrance-results",
@@ -439,9 +443,11 @@ export const galleryCategories = ["All", "Classroom", "Events", "Sports", "Arts 
 export const gallery: { category: Exclude<(typeof galleryCategories)[number], "All">; photo: PhotoSlot }[] = [
   // Add photos here: { category: "Events", photo: { src: "/images/gallery/xyz.jpg", alt: "..." } }
   { category: "Classroom", photo: { alt: "Nursery pupils at a learning table" } },
-  { category: "Events", photo: { alt: "Graduation day" } },
+  { category: "Events", photo: { src: "/images/photos/graduation.jpg", alt: "Graduation day", focus: "50% 22%" } },
   { category: "Sports", photo: { alt: "Relay race on sports day" } },
   { category: "Arts & Music", photo: { alt: "Pupils playing keyboard" } },
+  { category: "Facilities", photo: { src: "/images/photos/school-compound.jpg", alt: "The school compound" } },
+  { category: "Facilities", photo: { src: "/images/photos/school-front.jpg", alt: "The front of the school" } },
   { category: "Facilities", photo: { alt: "The school library" } },
   { category: "Classroom", photo: { alt: "Basic 3 science experiment" } },
   { category: "Events", photo: { alt: "Cultural Day parade" } },
@@ -450,7 +456,7 @@ export const gallery: { category: Exclude<(typeof galleryCategories)[number], "A
   { category: "Sports", photo: { alt: "March past by Pink House" } },
   { category: "Classroom", photo: { alt: "French lesson" } },
   { category: "Events", photo: { alt: "Christmas carol concert" } },
-  { category: "Facilities", photo: { alt: "Playground" } },
+  { category: "Facilities", photo: { src: "/images/photos/playground.jpg", alt: "The school playground" } },
   { category: "Arts & Music", photo: { alt: "Art and craft display" } },
   { category: "Classroom", photo: { alt: "KG reading circle" } },
   { category: "Sports", photo: { alt: "Football practice" } },

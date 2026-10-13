@@ -36,7 +36,15 @@ export function Photo({
   if (photo.src) {
     return (
       <div className={`${position} overflow-hidden ${className}`}>
-        <Image src={photo.src} alt={photo.alt} fill priority={priority} sizes={sizes} className="object-cover" />
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          fill
+          priority={priority}
+          sizes={sizes}
+          className="object-cover"
+          style={photo.focus ? { objectPosition: photo.focus } : undefined}
+        />
       </div>
     );
   }

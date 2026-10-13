@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# original, unedited school photos (kept locally as a fallback)
+/photo-originals/

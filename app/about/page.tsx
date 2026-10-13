@@ -171,7 +171,7 @@ export default function AboutPage() {
             <Reveal key={f.title} delay={(i % 4) * 80}>
               <div className="group h-full overflow-hidden rounded-[2rem] bg-white ring-1 ring-navy-900/8">
                 <Photo
-                  photo={{ alt: f.title }}
+                  photo={{ src: f.src, alt: f.title }}
                   tone={i % 2 ? "pink" : "blue"}
                   className="aspect-[4/3]"
                   hideLabel
